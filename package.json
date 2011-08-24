@@ -1,0 +1,11 @@
+{
+  "name" : "reflectrospective",
+  "version" : "1.0.0",
+  "dependencies" : {
+    "express" : "2",
+    "jade" : "0",
+    "socket.io" : "0",
+    "mongodb" : "0",
+    "long-stack-traces" : "0"
+  }
+}
