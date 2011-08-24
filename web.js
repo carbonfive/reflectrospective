@@ -23,8 +23,12 @@ app.configure( function() {
   });
 });
 
-app.get( "*", function( request, response ) {
+app.get( "/", function( request, response ) {
   response.render( 'index' );
+});
+
+app.get("/*", function( request, response ) {
+  response.sendfile( __dirname + '/public/' + request.params[0] );
 });
 
 app.listen( process.env.PORT || 3000 );
