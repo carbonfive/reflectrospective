@@ -30,10 +30,16 @@ app.get("/*", function( request, response ) {
 });
 
 io.sockets.on( 'connection', function( socket ) {
-});
+  io.sockets.emit( 'user connected' );
 
-io.sockets.on( 'update', function( data ) {
-  io.sockets.emit( 'update', data );
+  socket.on( 'update', function( data ) {
+    console.log( data );
+    io.sockets.emit( 'update', data );
+  });
+
+  socket.on('disconnect', function () {
+    io.sockets.emit( 'user disconnected' );
+  });
 });
 
 app.listen( process.env.PORT || 3000 );
