@@ -1,0 +1,14 @@
+#board {
+  border: 1px solid red;
+  position: relative;
+  width: 400px;
+  height: 400px;
+}
+
+.note {
+  position: absolute;
+  height: 200px;
+  width: 200px;
+  background-color: yellow;
+  box-shadow: 10px 10px 5px #888;
+}
