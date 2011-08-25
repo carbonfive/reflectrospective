@@ -1,3 +1,7 @@
+try {
+  Typekit.load();
+} catch(e) {}
+
 $(function() {
 
   var port = window.location.port || '80'
@@ -12,7 +16,8 @@ $(function() {
     return {
       guid: $note.attr('id'),
       offset: $note.offset(),
-      content: $.trim($('.content', $note).text())
+      content: $.trim($('.content', $note).text()),
+      rotation: $note.data('rotation')
     };
   }
 
@@ -36,6 +41,7 @@ $(function() {
         if ($note.length > 0) {
           return $note;
         }
+        var rotation = data.rotation || Math.round(Math.random() * 10 - 5);
         $note = $('#proto_note').children().clone();
         $note
           .draggable({
@@ -47,6 +53,9 @@ $(function() {
           .css('position', 'absolute')
           .css('top', 0)
           .css('left', 0)
+          .css('-moz-transform', 'rotate(' + rotation + 'deg)')
+          .css('-webkit-transform', 'rotate(' + rotation + 'deg)')
+          .data('rotation', rotation)
           .click(function(e) {
             var $form = $('form', this).toggle();
             var $content = $('.content', this).toggle();
@@ -69,7 +78,11 @@ $(function() {
       },
 
       'update': function() {
-        $note.css('left', data.offset.left).css('top', data.offset.top);
+        $note
+          .css('left', data.offset.left)
+          .css('top', data.offset.top)
+          .css('-moz-transform', 'rotate(' + data.rotation + 'deg)')
+          .css('-webkit-transform', 'rotate(' + data.rotation + 'deg)')
         $.trim($('.content', $note).html(data.content));
       },
 

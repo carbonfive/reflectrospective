@@ -6,14 +6,29 @@
 }
 
 .note {
+  width: 170px;
+  height: 210px;
+  padding: 20px 40px;
+  background-image: url(stickie.png);
   position: absolute;
-  height: 200px;
-  width: 200px;
-  background-color: yellow;
-  border: 1px solid #aaa;
-  box-shadow: 10px 10px 5px #888;
 }
 
-#proto_note, #proto_note form {
+.note .content {
+  font-family: felt-tip-woman-1;
+}
+
+#proto_note, .note form {
   display: none;
+}
+
+a.delete {
+  cursor: pointer;
+}
+
+textarea {
+  background-color: transparent;
+  font-family: felt-tip-woman-1;
+  width: 100%;
+  font-size: 16px;
+  border: none;
 }
