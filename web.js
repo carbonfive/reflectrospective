@@ -29,11 +29,21 @@ app.get("/*", function( request, response ) {
   response.sendfile( __dirname + '/public/' + request.params[0] );
 });
 
+var notes = {};
+
 io.sockets.on( 'connection', function( socket ) {
   io.sockets.emit( 'user connected' );
+  for( var guid in notes ) {
+    socket.emit( 'update', { event : 'create', data : notes[guid] } );
+  }
 
   socket.on( 'update', function( data ) {
     console.log( data );
+    if( data.event == 'create' || data.event == 'update' ) {
+      notes[ data.data.guid ] = data.data;
+    } else if( data.event == 'delete' ) {
+      delete notes[ data.data.guid ];
+    }
     io.sockets.emit( 'update', data );
   });
 
