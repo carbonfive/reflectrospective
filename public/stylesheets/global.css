@@ -1,8 +1,16 @@
+body {
+  background-image: url(whiteboard.jpg);
+}
+
+h1 {
+  font-family: felt-tip-woman-1;
+  font-size: 32px;
+}
+
 #board {
-  border: 1px solid red;
   position: relative;
-  width: 400px;
-  height: 400px;
+  width: 1280px;
+  height: 562px;
 }
 
 .note {
