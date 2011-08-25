@@ -42,6 +42,7 @@ $(function() {
           return $note;
         }
         var rotation = data.rotation || Math.round(Math.random() * 10 - 5);
+        var offset = data.offset ? data.offset : { top: 0, left: 0 };
         $note = $('#proto_note').children().clone();
         $note
           .draggable({
@@ -51,8 +52,8 @@ $(function() {
             }
           })
           .css('position', 'absolute')
-          .css('top', 0)
-          .css('left', 0)
+          .css('top', offset.top)
+          .css('left', offset.left)
           .css('-moz-transform', 'rotate(' + rotation + 'deg)')
           .css('-webkit-transform', 'rotate(' + rotation + 'deg)')
           .data('rotation', rotation)
@@ -73,6 +74,11 @@ $(function() {
           e.preventDefault();
           delete_note($note);
         });
+
+        if (data.content) {
+          $('.content', $note).html(data.content);
+          $('textarea', $note).val(data.content);
+        }
 
         $('textarea', $note).keyup(function(e) {
           if (event.keyCode == '13') {
@@ -98,7 +104,8 @@ $(function() {
           .css('top', data.offset.top)
           .css('-moz-transform', 'rotate(' + data.rotation + 'deg)')
           .css('-webkit-transform', 'rotate(' + data.rotation + 'deg)')
-        $.trim($('.content', $note).html(data.content));
+        $('.content', $note).html(data.content);
+        $('textarea', $note).val(data.content);
       },
 
       'delete': function() {
