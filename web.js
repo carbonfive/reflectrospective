@@ -34,6 +34,7 @@ var notes = {};
 io.sockets.on( 'connection', function( socket ) {
   io.sockets.emit( 'user connected' );
   for( var guid in notes ) {
+    console.log( "Sending " + guid + " to client" );
     socket.emit( 'update', { event : 'create', data : notes[guid] } );
   }
 
