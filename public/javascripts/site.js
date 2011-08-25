@@ -80,7 +80,7 @@ $(function() {
           $('textarea', $note).val(data.content);
         }
 
-        $('textarea', $note).keyup(function(e) {
+        $('textarea', $note).keyup(function(event) {
           if (event.keyCode == '13') {
             var note = $(this).parents('.note');
             var $form = $('form', $note).toggle();
