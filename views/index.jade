@@ -1,10 +1,7 @@
-h1 Hello World
-
-The current time is #{new Date().toString()}
-
-script
-  var socket = io.connect( 'http://#{request.headers.host}' );
-  socket.on( 'news', function( data ) {
-    console.log( data );
-    socket.emit( 'my other event', { my: 'data' } );
-  });
+#board
+#proto_note
+  .note
+    a.delete x
+    .content
+    form
+      textarea(name='text')
