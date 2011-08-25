@@ -73,6 +73,21 @@ $(function() {
           e.preventDefault();
           delete_note($note);
         });
+
+        $('textarea', $note).keyup(function(e) {
+          if (event.keyCode == '13') {
+            var note = $(this).parents('.note');
+            var $form = $('form', $note).toggle();
+            var $content = $('.content', $note).toggle();
+            var $textarea = $(this);
+            if ($form.is(':hidden')) {
+              $content.html($textarea.val());
+              send_event("update", note_data($note));
+            } else {
+              $textarea.focus();
+            }
+          }
+        });
         $('#board').append($note);
         return $note;
       },
